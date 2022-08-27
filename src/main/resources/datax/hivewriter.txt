@@ -1,0 +1,14 @@
+          "name": "hivewriter",
+          "parameter": {
+            "databaseName":"${dataBase}",
+            "tableName": "${table}",
+            "defaultFS": "${defaultFs}",
+			"writeMode":"${writeMode}",
+			"preSql":"${preSql}",
+			"fieldDelimiter":"\\u0001",
+            "tmpDatabase":"${tmpDataBase}",
+			"tmpDatabasePath":"${tmpPath}",
+            "partition": [${partition}],
+            "column": [ ${column}
+                        ]
+					}

@@ -1,0 +1,14 @@
+                    "name": "mysqlwriter",
+                    "parameter": {
+                        "column": [${column}],
+                        "connection": [
+                            {
+                                "jdbcUrl": "jdbc:mysql://${ipAddress}:${port}/${dataBase}?useUnicode=true&characterEncoding=utf-8&tinyInt1isBit=false",
+                                "table": [${table}]
+                            }
+                        ],
+						"preSql": [${preSql}],
+                        "password": "${passWord}",
+                        "username": "${userName}",
+                        "writeMode": "${writeMode}"
+                    }

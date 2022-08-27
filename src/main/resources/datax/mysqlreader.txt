@@ -1,0 +1,12 @@
+           "name":"mysqlreader",
+           "parameter":{
+           "connection":[
+                         {
+                          "jdbcUrl":["jdbc:mysql://${ipAddress}:${port}/${dataBase}?useUnicode=true&characterEncoding=utf-8&tinyInt1isBit=false"],
+                          "querySql":[${querySql}]
+                         }
+            ],
+			"password":"${passWord}",
+            "username":"${userName}",
+            "splitPk":"${splitPk}"
+            }

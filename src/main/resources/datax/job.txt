@@ -1,0 +1,19 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel":arg2
+      }
+    },
+    "content": [
+      {
+        "reader": {
+            args0
+        },
+        "writer": {
+            args1
+        }
+      }
+    ]
+  }
+}

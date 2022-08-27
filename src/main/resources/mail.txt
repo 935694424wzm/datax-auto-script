@@ -1,0 +1,14 @@
+# EMAIL_USE_SSL = False  # 我们公司没有使用SSL
+# # smtp 服务的邮箱服务器
+# EMAIL_HOST = "smtp.flashhold.com"
+# # smtp服务固定的端口是25
+# EMAIL_PORT = 25
+# # EMAIL_PORT = 465
+# # 发送邮件的邮箱
+# EMAIL_HOST_USER = "data@flashhold.com"
+# # 在邮箱中设置的客户端授权密码
+# EMAIL_HOST_PASSWORD = "abcdABCD!"
+# # 收件人看到的发件人 <此处要和发送邮件的邮箱相同>
+# # EMAIL_FROM = "智能报表<data@flashhold.com>"
+# # DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# DEFAULT_FROM_EMAIL = formataddr(pair=("智能报表", EMAIL_HOST_USER))

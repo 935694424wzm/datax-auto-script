@@ -1,0 +1,15 @@
+                    "name": "clickhousereader",
+                    "parameter": {
+                        "username": "${userName}",
+                        "password": "${passWord}",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    ${querySql}
+                                ],
+                                "jdbcUrl": [
+                                    "jdbc:clickhouse://${ipAddress}:${port}/${dataBase}"
+                                ]
+                            }
+                        ]
+                    }
