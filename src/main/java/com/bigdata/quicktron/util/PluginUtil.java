@@ -133,6 +133,33 @@ public class PluginUtil {
     }
 
 
+    public static void writeFileContentStream(String fileName, String fileContext){
+        File file = new File(fileName);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            //写入中文字符时解决中文乱码问题
+
+            FileOutputStream fos=new FileOutputStream(file);
+            OutputStreamWriter osw=new OutputStreamWriter(fos, "UTF-8");
+            BufferedWriter bw=new BufferedWriter(osw);
+            for (String s : StringUtils.splitPreserveAllTokens(fileContext, "\n")) {
+                bw.write(s+"\n");
+            }
+            bw.flush();
+            bw.close();
+            osw.close();
+            fos.close();
+
+        } catch (IOException e) {
+            log.error("-----写文件时的打开文件出现错误-----");
+        }
+
+    }
+
+
+
 
     /**
      * @author wzm

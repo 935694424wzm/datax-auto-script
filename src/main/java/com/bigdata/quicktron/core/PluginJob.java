@@ -69,6 +69,8 @@ public class PluginJob {
 
                 //写文件到本地路径
                 PluginUtil.writeFileContent(clientPathName,json);
+//                PluginUtil.writeFileContentStream(clientPathName,json);
+
 
                 //客户端上传路径
                 Path clientPath = new Path(clientPathName);
@@ -392,7 +394,7 @@ public class PluginJob {
             StringBuilder columnSb = new StringBuilder();
             String[] columnSplit = column.split(",");
             for (String s : columnSplit) {
-                columnSb.append("{\"name\":\"").append(s).append("\",")
+                columnSb.append("{\"name\":\"").append(StringUtils.trim(s)).append("\",")
                         .append("\"type\":\"String\"},");
             }
             column = columnSb.toString().replaceAll(",$", "");
@@ -438,6 +440,7 @@ public class PluginJob {
 //                "--dataxfilename test1";
 
         PluginJob pluginJob = new PluginJob();
+//        System.out.println(pluginJob.createJson(args[0]));
         if (args.length != 2 || StringUtils.isEmpty(args[0]) || StringUtils.isEmpty(args[1])) {
             throw new NullPointerException("-----异常退出，传入参数必须为两个，第一个参数为json参数，第二个参数为json文件名称-----");
         }
