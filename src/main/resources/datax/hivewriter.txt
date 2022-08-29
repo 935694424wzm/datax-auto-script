@@ -3,6 +3,7 @@
             "databaseName":"${dataBase}",
             "tableName": "${table}",
             "defaultFS": "${defaultFs}",
+            "hive_sql_set": "${hiveSetSql}",
 			"writeMode":"${writeMode}",
 			"preSql":"${preSql}",
 			"fieldDelimiter":"\\u0001",

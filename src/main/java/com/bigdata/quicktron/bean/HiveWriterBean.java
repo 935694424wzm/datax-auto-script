@@ -36,12 +36,14 @@ public class HiveWriterBean {
 
     private String presql;
 
+    private String hivesetsql;
+
 
     public HiveWriterBean() {
     }
 
 
-    public HiveWriterBean(String hivewriter, String database, String table, String defaultfs, String writemode, String partition, String tmpdatabase, String tmpdatabasepath, String column,String presql) {
+    public HiveWriterBean(String hivewriter, String database, String table, String defaultfs, String writemode, String partition, String tmpdatabase, String tmpdatabasepath, String column,String presql,String hivesetsql) {
         this.hivewriter = hivewriter;
         this.database = database;
         this.table = table;
@@ -52,6 +54,8 @@ public class HiveWriterBean {
         this.tmpdatabasepath = tmpdatabasepath;
         this.column = column;
         this.presql=presql;
+        this.hivesetsql=hivesetsql;
+
         PluginError.getError(PluginError.DATABASETYPE_HIVE+PluginError.WRITER,database,table,defaultfs,tmpdatabase,tmpdatabasepath,column);
     }
 
@@ -136,6 +140,14 @@ public class HiveWriterBean {
         this.presql = presql;
     }
 
+    public String getHivesetsql() {
+        return hivesetsql;
+    }
+
+    public void setHivesetsql(String hivesqlset) {
+        this.hivesetsql = hivesqlset;
+    }
+
     @Override
     public String toString() {
         return "HiveWriterBean{" +
@@ -149,6 +161,7 @@ public class HiveWriterBean {
                 ", tmpdatabasepath='" + tmpdatabasepath + '\'' +
                 ", column='" + column + '\'' +
                 ", presql='" + presql + '\'' +
+                ", hivesqlset='" + hivesetsql + '\'' +
                 '}';
     }
 }

@@ -1,7 +1,7 @@
 package com.bigdata.quicktron.bean;
 
 
-import javax.swing.plaf.PanelUI;
+
 
 /**
  * @ClassName: PluginKey
@@ -55,6 +55,8 @@ public class PluginKey {
     public static final String TMPPATH="tmpPath";
 
     public static final String CHANNEL="channel";
+
+    public static final String HIVESETSQL="hiveSetSql";
 
 //    public static final String FILENAME="dataxfilename";
 }

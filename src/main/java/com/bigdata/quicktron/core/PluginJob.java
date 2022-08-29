@@ -194,19 +194,34 @@ public class PluginJob {
         } else if (reader == PluginError.DATABASETYPE_HIVE) {
             String hivesql = null;
             String defaultfs = null;
+            String tmpdatabase=null;
+            String tmpdatabasepath=null;
+            String hivesetsql=null;
             for (String s : readerSplit) {
                 if (PluginUtil.getPrefixArg(s, PluginKey.HIVESQL)) {
                     hivesql = PluginUtil.getPluginArg(s, PluginKey.HIVESQL);
                 } else if (PluginUtil.getPrefixArg(s, PluginKey.DEFAULTFS)) {
                     defaultfs = PluginUtil.getPluginArg(s, PluginKey.DEFAULTFS);
+                } else if (PluginUtil.getPrefixArg(s, PluginKey.TMPDATABASE)) {
+                    tmpdatabase = PluginUtil.getPluginArg(s, PluginKey.TMPDATABASE);
+                } else if (PluginUtil.getPrefixArg(s, PluginKey.TMPPATH)) {
+                    tmpdatabasepath = PluginUtil.getPluginArg(s, PluginKey.TMPPATH);
+                }else if (PluginUtil.getPrefixArg(s, PluginKey.HIVESETSQL)) {
+                    hivesetsql = PluginUtil.getPluginArg(s, PluginKey.HIVESETSQL);
                 }
-
             }
-            HiveReaderBean hiveReaderBean = new HiveReaderBean(readerplugin, hivesql, defaultfs); //判断是否符合参数化
+            HiveReaderBean hiveReaderBean = new HiveReaderBean(readerplugin, hivesql, defaultfs,tmpdatabase,tmpdatabasepath,hivesetsql); //判断是否符合参数化
 
+
+            if (StringUtils.isEmpty(hivesetsql)){
+                hivesetsql="";
+            }
 
             readerJson = readerJson.replace("${hiveSql}", "\"" + hivesql + "\"")
-                    .replace("${defaultFs}", defaultfs);
+                    .replace("${defaultFs}", defaultfs)
+                    .replace("${tmpDataBase}", tmpdatabase)
+                    .replace("${tmpPath}", tmpdatabasepath)
+                    .replace("${hiveSetSql}",hivesetsql);
 
         }else if (reader == PluginError.DATABASETYPE_CLICKHOUSE){
 
@@ -326,6 +341,7 @@ public class PluginJob {
             String tmpdatabasepath = null;
             String presql = null;
             String column = null;
+            String hivesetsql=null;
             for (String s : writerSplit) {
                 if (PluginUtil.getPrefixArg(s, PluginKey.DATABASE)) {
                     database = PluginUtil.getPluginArg(s, PluginKey.DATABASE);
@@ -345,11 +361,13 @@ public class PluginJob {
                     column = PluginUtil.getPluginArg(s, PluginKey.COLUMN);
                 } else if (PluginUtil.getPrefixArg(s, PluginKey.PRESQL)) {
                     presql = PluginUtil.getPluginArg(s, PluginKey.PRESQL);
+                }else if (PluginUtil.getPrefixArg(s, PluginKey.HIVESETSQL)) {
+                    hivesetsql = PluginUtil.getPluginArg(s, PluginKey.HIVESETSQL);
                 }
             }
 
 
-            HiveWriterBean hiveWriterBean = new HiveWriterBean(writerplugin, database, table, defaultfs, writemode, partition, tmpdatabase, tmpdatabasepath, column, presql);//判断是否符合参数化
+            HiveWriterBean hiveWriterBean = new HiveWriterBean(writerplugin, database, table, defaultfs, writemode, partition, tmpdatabase, tmpdatabasepath, column, presql,hivesetsql);//判断是否符合参数化
 
 
             if (StringUtils.isEmpty(presql)) {
@@ -366,6 +384,9 @@ public class PluginJob {
 
                 partition = "";
             }
+            if (StringUtils.isEmpty(hivesetsql)){
+                hivesetsql="";
+            }
 
 
             StringBuilder columnSb = new StringBuilder();
@@ -379,6 +400,7 @@ public class PluginJob {
             writerJson = writerJson.replace("${dataBase}", database)
                     .replace("${table}", table)
                     .replace("${defaultFs}", defaultfs)
+                    .replace("${hiveSetSql}",hivesetsql)
                     .replace("${writeMode}", writemode)
                     .replace("${preSql}", presql)
                     .replace("${tmpDataBase}", tmpdatabase)

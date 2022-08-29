@@ -1,5 +1,8 @@
           "name": "hivereader",
           "parameter": {
               "hiveSql": [${hiveSql}],
-              "defaultFS": "${defaultFs}"
+              "defaultFS": "${defaultFs}",
+              "tempDatabase": "${tmpDataBase}",
+              "tempDatabasePath": "${tmpPath}",
+              "hive_sql_set": "${hiveSetSql}"
            }

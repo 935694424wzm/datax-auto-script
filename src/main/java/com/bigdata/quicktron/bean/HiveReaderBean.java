@@ -21,18 +21,27 @@ public class HiveReaderBean {
 
     private String defaultfs;
 
+    private String tmpdatabase;
+
+    private String tmpdatabasepath;
+
+    private String hivesetsql;
+
 
     public HiveReaderBean() {
     }
 
-    public HiveReaderBean(String hivereader, String hivesql, String defaultfs) {
+    public HiveReaderBean(String hivereader, String hivesql, String defaultfs, String tmpdatabase, String tmpdatabasepath, String hivesetsql) {
         this.hivereader = hivereader;
         this.hivesql = hivesql;
         this.defaultfs = defaultfs;
+        this.tmpdatabase = tmpdatabase;
+        this.tmpdatabasepath = tmpdatabasepath;
+        this.hivesetsql = hivesetsql;
 
-        PluginError.getError(PluginError.DATABASETYPE_HIVE+PluginError.READER,hivesql,defaultfs);
-
+        PluginError.getError(PluginError.DATABASETYPE_HIVE+PluginError.READER,hivesql,defaultfs,tmpdatabase,tmpdatabasepath);
     }
+
 
     public String getHivereader() {
         return hivereader;
@@ -58,12 +67,40 @@ public class HiveReaderBean {
         this.defaultfs = defaultfs;
     }
 
+    public String getTmpdatabase() {
+        return tmpdatabase;
+    }
+
+    public void setTmpdatabase(String tmpdatabase) {
+        this.tmpdatabase = tmpdatabase;
+    }
+
+    public String getTmpdatabasepath() {
+        return tmpdatabasepath;
+    }
+
+    public void setTmpdatabasepath(String tmpdatabasepath) {
+        this.tmpdatabasepath = tmpdatabasepath;
+    }
+
+    public String getHivesetsql() {
+        return hivesetsql;
+    }
+
+    public void setHivesetsql(String hivesqlset) {
+        this.hivesetsql = hivesqlset;
+    }
+
+
     @Override
     public String toString() {
         return "HiveReaderBean{" +
                 "hivereader='" + hivereader + '\'' +
                 ", hivesql='" + hivesql + '\'' +
                 ", defaultfs='" + defaultfs + '\'' +
+                ", tmpdatabase='" + tmpdatabase + '\'' +
+                ", tmpdatabasepath='" + tmpdatabasepath + '\'' +
+                ", hivesqlset='" + hivesetsql + '\'' +
                 '}';
     }
 }

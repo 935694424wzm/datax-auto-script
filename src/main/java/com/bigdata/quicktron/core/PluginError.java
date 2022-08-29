@@ -185,7 +185,9 @@ public class PluginError {
 
         }else if (plugin.equals(DATABASETYPE_HIVE+READER)) {
             sb.append(PluginKey.HIVESQL).append(",")
-                    .append(PluginKey.DEFAULTFS);
+                    .append(PluginKey.DEFAULTFS).append(",")
+                    .append(PluginKey.TMPDATABASE).append(",")
+                    .append(PluginKey.TMPPATH);
 
         }else if (plugin.equals(DATABASETYPE_HIVE+WRITER)){
             sb.append(PluginKey.DATABASE).append(",")

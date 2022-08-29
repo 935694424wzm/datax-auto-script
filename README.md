@@ -31,11 +31,17 @@
    \--readerPlugin hivereader 
    \--hiveSql xxx 
    \--defaultFs xxx 
+   \--tmpDataBase xxx 
+   \--tmpPath xxx 
+   \--hiveSetSql XXX
    \--separator 
    ##########################################解释
    \--readerPlugin  ## readerc插件名称（必须）
    --hiveSql        ## 需要读取的sql语句（必须）
    --defaultFs      ## 链接hdfs的文件地址（必须）
+   --tmpDataBase    ## 临时中间表的库名（非必须，默认default），最好写
+   --tmpPath        ## hive临时表所在数据库的hdfs路径(需写权限)（必须)
+   --hiveSetSql     ## 用于 set 一些参数（非必须）
    --separator      ## 用于和writerPlugin进行分割所设置（参数key必须写，参数value不需要写）
    ```
 
@@ -94,6 +100,7 @@
    \--dataBase xxx 
    \--table xxx 
    \--defaultFs xxx 
+   \--hiveSetSql XXX
    \--writeMode xxx 
    \--preSql xxx 
    \--tmpDataBase xxx 
@@ -105,6 +112,7 @@
    --dataBase 		 ## 数据库名称（必须）
    --table          ## 表名（必须）
    --defaultFs      ## 链接hdfs的文件地址（必须）
+   --hiveSetSql     ## 用于 set 一些参数（非必须）
    --writeMode      ## 追加或者覆盖数据（非必须，默认insert）(支持insert/overwrite)
    --preSql         ## 写入数据到目的表前，会先执行这里的标准HiveQL语句（非必须）
    --tmpDataBase    ## 临时中间表的库名（非必须，默认与写入的库名一致）
@@ -131,6 +139,9 @@
 start-datax.sh "\--readerPlugin hivereader 
 \--hiveSql select * from dim.dim_day_date 
 \--defaultFs hdfs://001.bg.qkt:8020 
+\--tmpDataBase tmp 
+\--tmpPath /user/hive/warehouse/tmp.db/
+\--hiveSetSql set hive.execution.engine=mr;set mapreduce.job.queuename=hive;
 \--separator 
 \--writerPlugin hivewriter 
 \--dataBase tmp 
@@ -138,6 +149,7 @@ start-datax.sh "\--readerPlugin hivereader
 \--defaultFs hdfs://001.bg.qkt:8020
 \--tmpDataBase tmp 
 \--tmpPath /user/hive/warehouse/tmp.db/
+\--hiveSetSql set hive.execution.engine=mr;set mapreduce.job.queuename=hive;
 \--column days,year_date, month_date,day_date,quarter_date,week_date,week_year_date,is_month_begin,is_month_end,day_type
 \--channel 1" "json文件名"
 
